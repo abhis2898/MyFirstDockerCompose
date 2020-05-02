@@ -1,4 +1,4 @@
-version: '3'
+version: '3.1'
 
 services:
         database:
@@ -8,25 +8,26 @@ services:
                 restart: always
                 environment:
                         MYSQL_ROOT_PASSWORD: rootpass
-                        MYSQL_DATABASE: wordpress
+                        MYSQL_DATABASE: joom
                         MYSQL_USER: abhishek
                         MYSQL_PASSWORD: redhat
 
         wordpress:
                 depends_on:
                         - database
-                image: wordpress
+                image:  joomla
                 volumes:
-                        - wordpress_files:/var/www/html
+                        - joomla_files:/var/www/html
                 ports:
                         - 8081:80
                 restart: always
                 environment:
-                        WORDPRESS_DB_HOST: database
-                        WORDPRESS_DB_USER: abhishek
-                        WORDPRESS_DB_PASSWORD: redhat
-                        WORDPRESS_DB_NAME: wordpress
+                        JOOMLA_DB_HOST: database
+                        JOOMLA_DB_USER: abhishek
+                        JOOMLA_DB_PASSWORD: redhat
+                        JOOMLA_DB_NAME: joom
 
 volumes:
-        wordpress_files:
+        joomla_files:
         db_data:
+
