@@ -1,0 +1,57 @@
+######	 install yum	#####
+
+step 1: open the folder yum.repos.d
+cd /etc/yum.repos.d
+
+step 2: create a repository using vi or vim
+vim abhi.repos
+
+step 3: enter the path for dvd file AppStream and BaseOS
+
+[dvd1]
+baseurl=file:///run/media/root/RHEL-8-0-0-BaseOS-x86_64/BaseOS
+gpgcheck=0
+
+[dvd2]
+baseurl=file:///run/media/root/RHEL-8-0-0-BaseOS-x86_64/AppStream
+gpgcheck=0
+
+step 4: initiate the repository
+yum.repolist
+
+			-------------------------------------------
+######	install docker	#####
+
+step 1: create a new repository in yum.repos.d
+cd /etc/yum.repos.d
+vim docker.repo
+
+step 2: enter the docker rpm url
+
+[docker]
+baseurl=https://download.docker.com/linux/centos/7/x86_64/stable/
+gpgcheck=0
+
+step 3: install docker
+
+yum install docker-ce --nobest
+
+			-------------------------------------------
+######	   install images &  mysql	#####
+
+1) docker pull mysql:5.7
+
+2) docker pull wordpress:5.1.1-php7.3-apache
+
+3) yum install mysql
+
+			-------------------------------------------
+######	   some commands required	#####
+1) iptables -P FORWARD ACCEPT
+2) setenforce 0
+3) systemctl enable firewalld
+4) firewall-cmd --zone=public --add-masquerade --permanent
+5) firewall-cmd --zone=public --add-port=80/tcp
+6) firewall-cmd --zone=public --add-port=443/tcp
+7) firewall-cmd --reload
+8) systemctl restart docker
