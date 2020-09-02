@@ -17,7 +17,7 @@ baseurl=file:///run/media/root/RHEL-8-0-0-BaseOS-x86_64/AppStream
 gpgcheck=0
 
 step 4: initiate the repository
-yum.repolist
+yum repolist
 
 			-------------------------------------------
 ######	install docker	#####
